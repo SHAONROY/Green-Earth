@@ -5,11 +5,9 @@ const defaultCardData = () => {
     .then((data) => displayDefaultCardData(data.plants));
 };
 const displayDefaultCardData = (cards) => {
-  console.log(cards);
   const treeContainer = document.getElementById("tree-container");
   treeContainer.innerHTML = "";
   for (let card of cards) {
-    console.log(card);
     const defaultDiv = document.createElement("div");
     defaultDiv.classList.add(
       "bg-white",
@@ -50,13 +48,21 @@ const categoriesDataFunction = () => {
     .then((res) => res.json())
     .then((json) => DisplayCategories(json.categories));
 };
+const removeActiveBtn = () => {
+  const treeBtn = document.querySelectorAll(".tree-btn");
+  treeBtn.forEach((btn) => btn.classList.remove("active"));
+};
 // Fetch Card Data
 const loadTreeData = (id) => {
-  console.log(id);
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((tree) => displayTreeData(tree.plants));
+    .then((tree) => {
+      removeActiveBtn();
+      const treeBtn = document.getElementById(`tree-btn-${id}`);
+      treeBtn.classList.add("active");
+      displayTreeData(tree.plants);
+    });
 };
 // Display Card Data
 const displayTreeData = (trees) => {
@@ -105,7 +111,7 @@ const DisplayCategories = (categories) => {
   for (let category of categories) {
     const btnDiv = document.createElement("div"); //Create Div
     btnDiv.innerHTML = `
-    <button onclick="loadTreeData(${category.id})" class="bg-[#DCFCE7] text-[#15803D] w-full text-xl px-5 py-3 mb-3 rounded-lg font-semibold">
+    <button id ="tree-btn-${category.id}" onclick="loadTreeData(${category.id})" class="bg-[#DCFCE7] text-[#15803D] w-full text-xl px-5 py-3 mb-3 rounded-lg font-semibold tree-btn">
       ${category.category_name}
     </button>`;
     categoriesContainer.append(btnDiv);
