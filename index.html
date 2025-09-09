@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Green-Earth-Project</title>
+
     <!-- google font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -88,6 +89,11 @@
       </div>
     </div>
     <!-- End The Banner Section -->
+    <!-- Loading Start -->
+    <section id="spinner" class="flex justify-center items-center py-10 hidden">
+      <span class="loading loading-bars loading-xl"></span>
+    </section>
+    <!-- Loading End -->
     <!-- Start Choose Your Trees Section -->
     <section class="py-10 bg-[#f0fdf4]">
       <h2 class="text-center text-4xl text-[#1F2937] font-bold pb-5">
@@ -102,7 +108,7 @@
           id="tree-container"
           class="col-span-8 grid grid-cols-12 gap-3 rounded-md"
         ></div>
-        <div class="col-span-2"></div>
+        <div class="col-span-2 bg-white py-5"></div>
       </div>
     </section>
     <!-- End Choose Your Trees Section -->
@@ -208,6 +214,20 @@
       </p>
     </section>
     <!-- End The Footer Section -->
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="plant_model" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="details-container"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
     <!-- Script -->
     <script src="./main.js"></script>
   </body>
